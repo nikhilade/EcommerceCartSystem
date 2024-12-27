@@ -88,7 +88,7 @@ public class EcommerceCartSystemApp {
 						adminFunctionalities(sc, prodService);
 					} else {
 						System.out.println("Welcome User: " + user.getUsername());
-						userFunctionalities(sc, prodService, cartService);
+						userFunctionalities(sc, prodService, cartService, user);
 					}
 				} else {
 					logger.warn("Login failed for username: " + loginUsername);
@@ -198,7 +198,7 @@ public class EcommerceCartSystemApp {
 		} while (flag);
 	}
 
-	private static void userFunctionalities(Scanner sc, ProductService prodService, CartService cartService) {
+	private static void userFunctionalities(Scanner sc, ProductService prodService, CartService cartService, UserModel user) {
 		logger.info("User functionalities started...");
 		Map<Integer, Integer> cartItems = new HashMap<Integer, Integer>();
 		double totalPrice = 0;
@@ -238,7 +238,7 @@ public class EcommerceCartSystemApp {
 					System.out.println(p.getProductId() + "\t" + p.getName() + "\t" + p.getDescription() + "\t"
 							+ p.getPrice() + "\t" + p.getStockQuantity() + "\t" + p.getCreatedAt());
 					logger.info("Product found: " + searchProdName);
-					addProductToCart(sc, p, cartService,totalPrice,cartItems);
+					addProductToCart(sc, p, cartService,totalPrice,cartItems,user);
 				} else {
 					System.out.println("Product Not Found!");
 					logger.warn("Product not found: " + searchProdName);
@@ -260,11 +260,11 @@ public class EcommerceCartSystemApp {
 	}
 
 	private static void addProductToCart(Scanner sc, ProductModel p,
-			CartService cartService,double totalPrice,Map<Integer, Integer> cartItems) {
+			CartService cartService,double totalPrice,Map<Integer, Integer> cartItems, UserModel user) {
 		boolean addFlag = true;
 
 		do {
-			System.out.println("1. Add product to cart\n2. Go Back");
+			System.out.println("1. Add product to cart\n2. View Cart\n3. Go Back");
 			System.out.println("Enter your choice: ");
 			int choice = sc.nextInt();
 			switch (choice) {
@@ -273,18 +273,52 @@ public class EcommerceCartSystemApp {
 				int quantity = sc.nextInt();
 
 				if (p.getStockQuantity() >= quantity) {
-					cartService.addProductToCart(p.getProductId(), p, quantity);
-					cartItems.put(p.getProductId(), quantity);
-					totalPrice = totalPrice + (p.getPrice() * quantity);
+					if(cartItems.containsKey(p.getProductId())) {
+						int existingQuantity = cartItems.get(p.getProductId());
+						cartItems.put(p.getProductId(), existingQuantity + quantity);
+						totalPrice = totalPrice + (p.getPrice()*quantity);
+						System.out.println("Updated Product in Cart. Total Price: "+totalPrice);
+						cartService.addProductToCart(user.getUserId(), p, quantity);
+					}else {
+						cartService.addProductToCart(user.getUserId(), p, quantity);
+						cartItems.put(p.getProductId(), quantity);
+						totalPrice = totalPrice + (p.getPrice() * quantity);
 
+						System.out.println("Product Added to Cart. Total Price: " + totalPrice);
+					}
 					p.setStockQuantity(p.getStockQuantity() - quantity);
-					System.out.println("Product Added to Cart. Total Price: " + totalPrice);
+					cartService.updateProductStock(p.getProductId(), p.getStockQuantity());		
 				} else {
 					System.out.println("Insufficient Stock! try reducing quantity");
 				}
 				break;
 			case 2:
+				if (!cartItems.isEmpty()) {
+					System.out.println("Your Cart: ");
+				    cartItems.forEach((productId, qty) -> {
+				     
+				    	ProductModel product = cartService.getProductById(productId);
+//				    	logger.debug("Product "+product.getName());
+				    	if (product != null) {
+				            System.out.println("Product: " + product.getName() + " Quantity: " + qty + " Price: "
+				                    + product.getPrice() * qty);
+				        } else {
+				            System.out.println("Product Not found!");
+				        }
+				    });
+				    System.out.println("Total Cart Price: "+totalPrice);
+				} else {
+				    System.out.println("Cart is empty or not initialized.");
+				}
+				
+				
+				
+				break;
+			case 3:
 				addFlag = false;
+				break;
+			default:
+				System.out.println("Invalid choice. Please try again.");
 				break;
 			}
 		} while (addFlag);

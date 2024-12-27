@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.techhub.service.CartRepository"/>
+    <fullyQualifiedTypeName name="org.techhub.model.ProductModel"/>
+    <fullyQualifiedTypeName name="org.techhub.repository.CartRepository"/>
+    <fullyQualifiedTypeName name="org.techhub.repository.CartRepositoryImpl"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
+    <fullyQualifiedTypeName name="org.techhub.service.CartService"/>
+    <fullyQualifiedTypeName name="org.techhub.service.CartServiceImpl"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="org.techhub.model.CartModel"/>
+    <fullyQualifiedTypeName name="org.techhub.model.UserModel"/>
+</qualifiedTypeNameHistroy>
