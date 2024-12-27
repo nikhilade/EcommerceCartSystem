@@ -1,0 +1,11 @@
+package org.techhub.service;
+
+import java.util.Optional;
+
+import org.techhub.model.ProductModel;
+import org.techhub.model.UserModel;
+
+public interface CartService {
+	public void addProductToCart(ProductModel product);
+	
+}

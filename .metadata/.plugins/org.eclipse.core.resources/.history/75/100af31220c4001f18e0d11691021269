@@ -1,0 +1,18 @@
+package org.techhub.repository;
+
+import java.util.Scanner;
+
+import org.techhub.model.ProductModel;
+
+public class CartRepositoryImpl implements CartRepository{
+
+	@Override
+	public void addProductToCart(Scanner sc,ProductModel product) {
+		if(product!=null) {
+			System.out.println("Enter Quantity: ");
+			int quantity = 
+		}
+		
+	}
+
+}

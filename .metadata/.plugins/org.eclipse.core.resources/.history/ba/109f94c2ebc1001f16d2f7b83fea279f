@@ -1,0 +1,17 @@
+package org.techhub.service;
+
+import java.util.List;
+
+import org.techhub.model.ProductModel;
+import org.techhub.repository.ProductRepository;
+import org.techhub.repository.ProductRepositoryImpl;
+
+public class ProductServiceImpl implements ProductService{
+	ProductRepository prepo = new ProductRepositoryImpl();
+	public boolean addNewProduct(ProductModel prod) {
+		return prepo.addNewProduct(prod);
+	}
+	public List<ProductModel> getAllProducts() {
+		return prepo.getAllProducts();
+	}
+}

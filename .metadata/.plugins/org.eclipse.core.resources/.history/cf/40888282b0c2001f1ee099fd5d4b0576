@@ -1,0 +1,37 @@
+package org.techhub.repository;
+
+import java.util.Optional;
+
+import org.techhub.model.UserModel;
+
+public class AuthRepositoryImpl extends DBSTATE implements AuthRepository{
+
+	@Override
+	public boolean registerUser(UserModel user) {
+		try {
+			stmt = conn.prepareStatement("insert into users(username,email,password,role) values (?,?,?,?)");
+			stmt.setString(1, user.getUsername());
+			stmt.setString(2, user.getEmail());
+			stmt.setString(3, user.getPassword());
+			stmt.setString(4, user.getRole());
+			
+			int rowsInserted = stmt.executeUpdate();
+			return rowsInserted > 0;
+		}catch(Exception e) {
+			System.out.println("Error is: "+e);
+			return false;
+		}
+	}
+
+	@Override
+	public Optional<UserModel> login(String username, String password) {
+		return null;
+	}
+
+	@Override
+	public boolean isAdmin(String username) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

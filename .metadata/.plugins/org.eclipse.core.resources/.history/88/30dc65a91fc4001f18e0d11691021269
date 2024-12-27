@@ -1,0 +1,7 @@
+package org.techhub.repository;
+
+import org.techhub.model.ProductModel;
+
+public interface CartRepository {
+	public void addProductToCart(ProductModel product);
+}

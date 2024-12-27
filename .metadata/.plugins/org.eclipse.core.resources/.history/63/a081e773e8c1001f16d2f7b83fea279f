@@ -1,0 +1,7 @@
+package org.techhub.repository;
+
+import org.techhub.model.ProductModel;
+
+public interface ProductRepository {
+	public boolean addNewProduct(ProductModel prod);
+}

@@ -1,0 +1,8 @@
+package org.techhub.service;
+
+import org.techhub.repository.AuthRepository;
+import org.techhub.repository.AuthRepositoryImpl;
+
+public class AuthServiceImpl {
+	AuthRepository arepo = new AuthRepositoryImpl();
+}

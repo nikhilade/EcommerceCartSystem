@@ -1,0 +1,27 @@
+package org.techhub.repository;
+
+import java.util.Optional;
+
+import org.techhub.model.UserModel;
+
+public class AuthRepositoryImpl implements AuthRepository{
+
+	@Override
+	public boolean registerUser(UserModel user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Optional<UserModel> login(String username, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isAdmin(String username) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}
