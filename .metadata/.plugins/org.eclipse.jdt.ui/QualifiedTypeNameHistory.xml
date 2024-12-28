@@ -9,9 +9,19 @@
     <fullyQualifiedTypeName name="org.techhub.service.CartService"/>
     <fullyQualifiedTypeName name="org.techhub.service.CartServiceImpl"/>
     <fullyQualifiedTypeName name="java.util.HashMap"/>
-    <fullyQualifiedTypeName name="org.techhub.model.UserModel"/>
     <fullyQualifiedTypeName name="org.techhub.model.CartModel"/>
     <fullyQualifiedTypeName name="java.awt.List"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.Map.Entry"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="org.techhub.repository.DBSTATE"/>
+    <fullyQualifiedTypeName name="java.sql.Timestamp"/>
+    <fullyQualifiedTypeName name="org.techhub.service.OrdersServiceImpl"/>
+    <fullyQualifiedTypeName name="org.techhub.service.OrdersService"/>
+    <fullyQualifiedTypeName name="org.techhub.repository.OrdersRepository"/>
+    <fullyQualifiedTypeName name="org.techhub.repository.OrdersRepositoryImpl"/>
+    <fullyQualifiedTypeName name="org.techhub.model.OrderItemModel"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.techhub.model.OrdersModel"/>
+    <fullyQualifiedTypeName name="org.techhub.model.UserModel"/>
 </qualifiedTypeNameHistroy>
