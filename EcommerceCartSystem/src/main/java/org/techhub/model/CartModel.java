@@ -4,70 +4,66 @@ import java.time.LocalDateTime;
 
 public class CartModel {
 	private int cartId;
-    private int userId;
-    private int productId;
-    private int quantity;
-    private LocalDateTime addedAt;
-    
-    public CartModel() {}
-    public CartModel(int cartId, int userId, int productId, int quantity, LocalDateTime addedAt) {
-        this.cartId = cartId;
-        this.userId = userId;
-        this.productId = productId;
-        this.quantity = quantity;
-        this.addedAt = addedAt;
-    }
+	private int userId;
+	private int productId;
+	private int quantity;
+	private LocalDateTime addedAt;
 
-    // Getters and Setters
-    public int getCartId() {
-        return cartId;
-    }
+	public CartModel() {
+	}
 
-    public void setCartId(int cartId) {
-        this.cartId = cartId;
-    }
+	public CartModel(int cartId, int userId, int productId, int quantity, LocalDateTime addedAt) {
+		this.cartId = cartId;
+		this.userId = userId;
+		this.productId = productId;
+		this.quantity = quantity;
+		this.addedAt = addedAt;
+	}
 
-    public int getUserId() {
-        return userId;
-    }
+	// Getters and Setters
+	public int getCartId() {
+		return cartId;
+	}
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+	public void setCartId(int cartId) {
+		this.cartId = cartId;
+	}
 
-    public int getProductId() {
-        return productId;
-    }
+	public int getUserId() {
+		return userId;
+	}
 
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
-    public int getQuantity() {
-        return quantity;
-    }
+	public int getProductId() {
+		return productId;
+	}
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
 
-    public LocalDateTime getAddedAt() {
-        return addedAt;
-    }
+	public int getQuantity() {
+		return quantity;
+	}
 
-    public void setAddedAt(LocalDateTime addedAt) {
-        this.addedAt = addedAt;
-    }
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 
-    @Override
-    public String toString() {
-        return "CartModel{" +
-                "cartId=" + cartId +
-                ", userId=" + userId +
-                ", productId=" + productId +
-                ", quantity=" + quantity +
-                ", addedAt=" + addedAt +
-                '}';
-    }
+	public LocalDateTime getAddedAt() {
+		return addedAt;
+	}
+
+	public void setAddedAt(LocalDateTime addedAt) {
+		this.addedAt = addedAt;
+	}
+
+	@Override
+	public String toString() {
+		return "CartModel{" + "cartId=" + cartId + ", userId=" + userId + ", productId=" + productId + ", quantity="
+				+ quantity + ", addedAt=" + addedAt + '}';
+	}
 }
-

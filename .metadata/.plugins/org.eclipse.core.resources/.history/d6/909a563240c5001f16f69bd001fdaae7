@@ -1,0 +1,40 @@
+package org.techhub.model;
+
+import java.sql.Timestamp;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+
+public class OrdersModel {
+
+	private int order_id;
+	private int user_id;
+	private double total_price;
+	private OrderStatus order_status;
+	private Timestamp order_date;
+	
+	public enum OrderStatus{
+		PENDING,
+		PROCESSING,
+		SHIPPED,
+		DELIVERED,
+		CANCELLED
+	}
+	
+	public OrdersModel(int user_id, int total_price, OrderStatus order_status, Timestamp orderDate) {
+		this.user_id = user_id;
+		this.total_price = total_price;
+		this.order_status = order_status;
+		this.order_date = order_date;
+	}
+
+}

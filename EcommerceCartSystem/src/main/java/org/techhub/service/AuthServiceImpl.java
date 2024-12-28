@@ -6,7 +6,7 @@ import org.techhub.model.UserModel;
 import org.techhub.repository.AuthRepository;
 import org.techhub.repository.AuthRepositoryImpl;
 
-public class AuthServiceImpl implements AuthService{
+public class AuthServiceImpl implements AuthService {
 	AuthRepository arepo = new AuthRepositoryImpl();
 
 	@Override

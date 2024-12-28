@@ -16,49 +16,50 @@ public class DBConfig {
 	protected static Connection conn;
 	protected static PreparedStatement stmt;
 	protected static ResultSet rs;
-	
+
 	private static DBConfig db;
-	
+
 	static {
 		PropertyConfigurator.configure(
 				"C:\\Users\\abcd\\Desktop\\Project\\EcommerceCartSystem\\src\\main\\resources\\application.properties");
 	}
-	
+
 	private DBConfig() {
 		try {
-			
+
 			File f = new File("");
 			String path = f.getAbsolutePath();
-			FileInputStream inputStream = new FileInputStream(path+"\\src\\main\\resources\\dbconfig.properties");
+			FileInputStream inputStream = new FileInputStream(path + "\\src\\main\\resources\\dbconfig.properties");
 			Properties p = new Properties();
 			p.load(inputStream);
 
 			logger.info("Loading database driver: " + p.getProperty("driver"));
 			Class.forName(p.getProperty("driver"));
 			logger.info("Connecting to database: " + p.getProperty("url"));
-			conn = DriverManager.getConnection(p.getProperty("url"),p.getProperty("username"),p.getProperty("password"));
+			conn = DriverManager.getConnection(p.getProperty("url"), p.getProperty("username"),
+					p.getProperty("password"));
 			logger.info("Connected to database successfully.");
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			logger.error("Error connecting to database: " + e.getMessage(), e);
 		}
 	}
-	
+
 	public static DBConfig getInstance() {
-		if(db==null) {
-			db=new DBConfig();
+		if (db == null) {
+			db = new DBConfig();
 		}
 		return db;
 	}
-	
+
 	public static Connection getConn() {
 		return conn;
 	}
-	
+
 	public static PreparedStatement getStatement() {
 		return stmt;
 	}
-	
+
 	public static ResultSet getResultSet() {
 		return rs;
 	}

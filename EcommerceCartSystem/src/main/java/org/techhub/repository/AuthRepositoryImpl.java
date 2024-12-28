@@ -5,11 +5,10 @@ import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-import org.techhub.client.EcommerceCartSystemApp;
 import org.techhub.model.UserModel;
 
 public class AuthRepositoryImpl extends DBSTATE implements AuthRepository {
-	
+
 	private static Logger logger = Logger.getLogger(AuthRepositoryImpl.class);
 
 	static {
@@ -20,7 +19,7 @@ public class AuthRepositoryImpl extends DBSTATE implements AuthRepository {
 	@Override
 	public boolean registerUser(UserModel user) {
 		try {
-			
+
 			stmt = conn
 					.prepareStatement("insert into users(username,email,password,created_at,role) values (?,?,?,?,?)");
 			stmt.setString(1, user.getUsername());
@@ -66,12 +65,12 @@ public class AuthRepositoryImpl extends DBSTATE implements AuthRepository {
 			rs = stmt.executeQuery();
 			if (rs.next()) {
 				boolean isAdmin = rs.getString("role").equalsIgnoreCase("admin");
-                if (isAdmin) {
-                    logger.info("User " + username + " is an admin."); 
-                } else {
-                    logger.info("User " + username + " is not an admin."); 
-                }
-                return isAdmin;
+				if (isAdmin) {
+					logger.info("User " + username + " is an admin.");
+				} else {
+					logger.info("User " + username + " is not an admin.");
+				}
+				return isAdmin;
 			}
 		} catch (Exception e) {
 			logger.error("Error checking admin status for user " + username + ": " + e.getMessage(), e);

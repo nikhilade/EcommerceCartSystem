@@ -5,11 +5,13 @@
     <fullyQualifiedTypeName name="org.techhub.repository.CartRepository"/>
     <fullyQualifiedTypeName name="org.techhub.repository.CartRepositoryImpl"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
-    <fullyQualifiedTypeName name="java.sql.SQLException"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
     <fullyQualifiedTypeName name="org.techhub.service.CartService"/>
     <fullyQualifiedTypeName name="org.techhub.service.CartServiceImpl"/>
     <fullyQualifiedTypeName name="java.util.HashMap"/>
-    <fullyQualifiedTypeName name="org.techhub.model.CartModel"/>
     <fullyQualifiedTypeName name="org.techhub.model.UserModel"/>
+    <fullyQualifiedTypeName name="org.techhub.model.CartModel"/>
+    <fullyQualifiedTypeName name="java.awt.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
 </qualifiedTypeNameHistroy>

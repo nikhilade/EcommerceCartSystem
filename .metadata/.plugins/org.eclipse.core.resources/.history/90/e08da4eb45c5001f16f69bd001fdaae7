@@ -1,0 +1,8 @@
+package org.techhub.repository;
+
+import org.techhub.model.OrdersModel;
+
+public interface OrdersRepository {
+	public int createOrder(OrdersModel order);
+
+}

@@ -3,6 +3,8 @@ package org.techhub.repository;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -66,11 +68,10 @@ public class CartRepositoryImpl extends DBSTATE implements CartRepository {
 		return false;
 	}
 
-	@Override
-	public boolean updateProductStock(int productId, int newStockQuantity) {
+	public boolean updateProductStock(int productId, int newQuantity) {
 		try {
 			stmt = conn.prepareStatement("update products set stock_quantity = ? where product_id = ?");
-			stmt.setInt(1, newStockQuantity);
+			stmt.setInt(1, newQuantity);
 			stmt.setInt(2, productId);
 
 			int result = stmt.executeUpdate();
@@ -127,6 +128,102 @@ public class CartRepositoryImpl extends DBSTATE implements CartRepository {
 			logger.error("");
 		}
 		return null;
+	}
+
+	@Override
+	public boolean removeProductFromCart(int userId, ProductModel product, int quantity) {
+		try {
+			// checking if the product exists in the cart for the given user
+			stmt = conn.prepareStatement("select quantity from cart where user_id = ? and product_id = ?");
+			stmt.setInt(1, userId);
+			stmt.setInt(2, product.getProductId());
+			rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				int existingQuantity = rs.getInt("quantity");
+
+				// if the quantity to be removed is less than or equal to the current quantity
+				// in the cart
+				if (quantity <= existingQuantity) {
+					int newQuantity = existingQuantity - quantity;
+
+					if (newQuantity > 0) {
+						// update the quantity of the product in the cart
+						stmt = conn
+								.prepareStatement("update cart set quantity = ? where user_id = ? and product_id = ?");
+						stmt.setInt(1, newQuantity);
+						stmt.setInt(2, userId);
+						stmt.setInt(3, product.getProductId());
+						int result = stmt.executeUpdate();
+
+						if (result > 0) {
+							logger.info("Product quantity updated in cart: " + product.getName());
+							// Update product stock
+							int newStock = product.getStockQuantity() + quantity;
+							stmt = conn.prepareStatement("update products set stock_quantity = ? where product_id = ?");
+							stmt.setInt(1, newStock);
+							stmt.setInt(2, product.getProductId());
+							stmt.executeUpdate();
+							return true;
+						}
+
+					} else {
+						// If the quantity becomes zero, remove the product from the cart
+						stmt = conn.prepareStatement("delete from cart where user_id = ? and product_id = ?");
+						stmt.setInt(1, userId);
+						stmt.setInt(2, product.getProductId());
+						int result = stmt.executeUpdate();
+						if (result > 0) {
+							logger.info("Product removed from cart: " + product.getName());
+							// Update product stock
+							int newStock = product.getStockQuantity() + existingQuantity; // Return the entire quantity
+							stmt = conn.prepareStatement("update products set stock_quantity = ? where product_id = ?");
+							stmt.setInt(1, newStock);
+							stmt.setInt(2, product.getProductId());
+							stmt.executeUpdate();
+							return true;
+						}
+					}
+				} else {
+					logger.warn("Insufficient quantity in cart to remove.");
+				}
+			} else {
+				logger.warn("Product not found in the cart.");
+			}
+		} catch (SQLException e) {
+			logger.error("Error removing product from cart: " + e.getMessage(), e);
+		}
+		return false;
+	}
+
+	@Override
+	public List<CartModel> getCartByUserId(int userId) {
+		List<CartModel> cartList = new ArrayList<>();
+		try {
+			stmt = conn.prepareStatement("select * from cart where user_id = ?");
+			stmt.setInt(1, userId);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				CartModel cart = new CartModel(rs.getInt("cart_id"), rs.getInt("user_id"), rs.getInt("product_id"),
+						rs.getInt("quantity"), rs.getTimestamp("added_at").toLocalDateTime());
+				cartList.add(cart);
+			}
+		} catch (SQLException e) {
+			logger.error("Error fetching cart data: " + e.getMessage());
+		}
+		return cartList;
+	}
+
+	@Override
+	public void clearCart(int userId) {
+		try {
+			stmt = conn.prepareStatement("DELETE FROM cart WHERE user_id = ?");
+			stmt.setInt(1, userId);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			logger.error("Failed to clear cart: " + e.getMessage(), e);
+		}
+
 	}
 
 }
