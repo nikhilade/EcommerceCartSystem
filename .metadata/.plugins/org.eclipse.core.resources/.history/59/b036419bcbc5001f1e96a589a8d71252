@@ -24,7 +24,7 @@ public class OrdersRepositoryImpl extends DBSTATE implements OrdersRepository {
 			return orderId;
 		}
 
-		// checking order fields
+		// Debugging logs to check order fields
 		logger.info("User ID: " + order.getUser_id());
 		logger.info("Total Price: " + order.getTotal_price());
 		logger.info("Order Status: " + order.getOrder_status());

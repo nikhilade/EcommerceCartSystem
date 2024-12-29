@@ -24,4 +24,5 @@
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="org.techhub.model.OrdersModel"/>
     <fullyQualifiedTypeName name="org.techhub.model.UserModel"/>
+    <fullyQualifiedTypeName name="lombok.EqualsAndHashCode"/>
 </qualifiedTypeNameHistroy>

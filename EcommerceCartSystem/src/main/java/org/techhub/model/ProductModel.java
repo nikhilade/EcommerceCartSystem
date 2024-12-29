@@ -2,6 +2,19 @@ package org.techhub.model;
 
 import java.time.LocalDateTime;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class ProductModel {
 
 	private int productId;
@@ -11,87 +24,40 @@ public class ProductModel {
 	private int stockQuantity;
 	private LocalDateTime createdAt;
 
-	public ProductModel() {
-		this.createdAt = LocalDateTime.now();
-	}
+//	public ProductModel() {
+//		this.createdAt = LocalDateTime.now();
+//	}
 
-	public ProductModel(int productId, String name, String description, double price, int stockQuantity,
-			LocalDateTime createdAt) {
-		super();
-		this.productId = productId;
-		this.name = name;
-		this.description = description;
-		this.price = price;
-		this.stockQuantity = stockQuantity;
-		this.createdAt = createdAt;
-	}
+//	public ProductModel(int productId, String name, String description, double price, int stockQuantity,
+//			LocalDateTime createdAt) {
+//		super();
+//		this.productId = productId;
+//		this.name = name;
+//		this.description = description;
+//		this.price = price;
+//		this.stockQuantity = stockQuantity;
+//		this.createdAt = createdAt;
+//	}
 
-	public int getProductId() {
-		return productId;
-	}
 
-	public void setProductId(int productId) {
-		this.productId = productId;
-	}
+//	public String toString() {
+//		return "[" + productId + "," + name + "," + description + "," + price + "," + stockQuantity + "," + createdAt
+//				+ "]";
+//	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	public int getStockQuantity() {
-		return stockQuantity;
-	}
-
-	public void setStockQuantity(int stockQuantity) {
-		this.stockQuantity = stockQuantity;
-	}
-
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public String toString() {
-		return "[" + productId + "," + name + "," + description + "," + price + "," + stockQuantity + "," + createdAt
-				+ "]";
-	}
-
-	public boolean equals(Object obj) {
-		ProductModel prod = (ProductModel) obj;
-
-		if (prod.getProductId() == this.productId && prod.getName().equals(this.name)
-				&& prod.getDescription().equals(this.description) && prod.getPrice() == this.price
-				&& prod.getStockQuantity() == this.stockQuantity && prod.getCreatedAt() == this.createdAt) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public int hashCode() {
-		return productId * 10000;
-	}
+//	public boolean equals(Object obj) {
+//		ProductModel prod = (ProductModel) obj;
+//
+//		if (prod.getProductId() == this.productId && prod.getName().equals(this.name)
+//				&& prod.getDescription().equals(this.description) && prod.getPrice() == this.price
+//				&& prod.getStockQuantity() == this.stockQuantity && prod.getCreatedAt() == this.createdAt) {
+//			return true;
+//		} else {
+//			return false;
+//		}
+//	}
+//
+//	public int hashCode() {
+//		return productId * 10000;
+//	}
 }
